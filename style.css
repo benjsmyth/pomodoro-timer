@@ -65,14 +65,14 @@ div#main {
 }
 
 div#caption {
-	padding: 9vh 10vw 1vh 10vw;
+	padding: 11vh 10vw 2vh 10vw;
 	text-align: center;
 	font-size: 0.93em;
 }
 
 div#timer {
 	text-align: center;
-	font-size: 23em;
+	font-size: 21em;
 	letter-spacing: 5px;
 	font-weight: 500;
 }

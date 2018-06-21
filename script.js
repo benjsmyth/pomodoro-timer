@@ -3,7 +3,9 @@ const pause = document.getElementById("pause");
 const reset = document.getElementById("reset");
 const timer = document.getElementById("timer");
 
-window.onload = () => {timer.textContent = "25:00"};
+timer.style.transition = "color 400ms";
+
+window.onload = () => {timer.textContent = `${padded(minutes)}:${padded(seconds)}`};
 
 function padded(a) {
 	if (a < 10) {
@@ -24,27 +26,27 @@ let minutes = Math.floor((time / 60) % 60);
 function updateTime() {
 	if (!clockType.includes(minutes)) clockType.push(minutes);
 
-	seconds = time % 60;
-	minutes = Math.floor((time / 60) % 60);
-	timer.textContent = `${padded(minutes)}:${padded(seconds)}`;
-
 	if (time == 0 && clockType.includes(25)) {
 		clockType.splice(0);
+		timer.style.color = "#999999";
 		time = 301;
 	}
 
 	else if (time == 0 && !clockType.includes(25)) {
 		clockType.splice(0);
+		timer.style.color = "#191919";
 		time = 1501;
 	}
 
 	time--;
+	seconds = time % 60;
+	minutes = Math.floor((time / 60) % 60);
+	timer.textContent = `${padded(minutes)}:${padded(seconds)}`;
 }
 
 var interval;
 
 function startTimer() {
-	updateTime();
 	interval = setInterval(updateTime, 1000);
 	start.removeEventListener("click", startTimer);
 	pause.addEventListener("click", pauseTimer);
@@ -60,7 +62,7 @@ function resetTimer() {
 	clearInterval(interval);
 	clockType.splice(0);
 	time = 1500;
-	timer.textContent = "25:00";
+	timer.textContent = "00:10";
 	start.addEventListener("click", startTimer);
 	pause.addEventListener("click", pauseTimer);
 }
