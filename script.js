@@ -28,12 +28,12 @@ function updateTime() {
 	minutes = Math.floor((time / 60) % 60);
 	timer.textContent = `${padded(minutes)}:${padded(seconds)}`;
 
-	if (time == 0 && clockType.includes(1)) {
+	if (time == 0 && clockType.includes(25)) {
 		clockType.splice(0);
 		time = 301;
 	}
 
-	else if (time == 0 && !clockType.includes(1)) {
+	else if (time == 0 && !clockType.includes(25)) {
 		clockType.splice(0);
 		time = 1501;
 	}
@@ -59,7 +59,7 @@ function pauseTimer() {
 function resetTimer() {
 	clearInterval(interval);
 	clockType.splice(0);
-	time = 60;
+	time = 1500;
 	timer.textContent = "25:00";
 	start.addEventListener("click", startTimer);
 	pause.addEventListener("click", pauseTimer);
