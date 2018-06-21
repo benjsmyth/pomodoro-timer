@@ -4,6 +4,7 @@
 	font-family: 'Roboto', sans-serif;
 	background: #f9f9f9;
 	color: #191919;
+	box-sizing: border-box;
 }
 
 div#container {
@@ -13,46 +14,49 @@ div#container {
 
 div#header {
 	width: 100%;
-	height: 5vh;
-	padding-top: 1.5vh;
+	height: 6vh;
+	padding-top: 2vh;
 	font-size: 0.8em;
 	text-transform: uppercase;
 	letter-spacing: 2.5px;
 	display: grid;
 	grid-template-columns: auto;
 	grid-template-rows: auto;
-	grid-template-areas: "start pause stop"
+	grid-template-areas: "start pause reset"
 }
 
-h3#start {
+div#start {
 	grid-area: start;
-	text-align: center;
-	line-height: 5vh;
-	font-weight: 500;
-	transition: color 280ms;
+	line-height: 6vh;
 	border-right: 2px solid black;
 }
 
-h3#pause {
+div#pause {
 	grid-area: pause;
-	text-align: center;
-	line-height: 5vh;
-	font-weight: 500;
-	transition: color 280ms;
+	line-height: 6vh;
 }
 
-h3#stop {
-	grid-area: stop;
-	text-align: center;
-	line-height: 5vh;
-	font-weight: 500;
-	transition: color 280ms;
+div#reset {
+	grid-area: reset;
+	line-height: 6vh;
 	border-left: 2px solid black;
 }
 
-h3:hover {
+div#header > div > h3 {
+	width: 50%;
+	margin: 0 auto;
+	font-weight: 500;
+	text-align: center;
+	transition: color 280ms, transform 280ms;
+}
+ 
+div#header > div > h3:hover {
 	color: #898989;
 	cursor: pointer;
+}
+
+div#header > div > h3:active {
+	transform: scale(1.06, 1.06);
 }
 
 div#main {
@@ -60,27 +64,33 @@ div#main {
 	height: 89vh;
 }
 
+div#caption {
+	padding: 9vh 10vw 1vh 10vw;
+	text-align: center;
+	font-size: 0.93em;
+}
+
 div#timer {
 	text-align: center;
-	line-height: 84vh;
-	font-size: 22.5em;
+	font-size: 23em;
+	letter-spacing: 5px;
 	font-weight: 500;
 }
 
 div#footer {
 	width: 100%;
-	height: 4.5vh;
+	height: 5vh;
 	font-size: 0.9em
 }
 
 p#coded {
 	float: left;
-	line-height: 4.5vh;
+	line-height: 5vh;
 	margin: 0 13px;
 }
 
 p#visit {
 	float: right;
-	line-height: 4.5vh;
+	line-height: 5vh;
 	margin: 0 13px;
 }

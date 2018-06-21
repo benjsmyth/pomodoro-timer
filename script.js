@@ -1,6 +1,6 @@
 const start = document.getElementById("start");
 const pause = document.getElementById("pause");
-const stop = document.getElementById("stop");
+const reset = document.getElementById("reset");
 const timer = document.getElementById("timer");
 
 window.onload = () => {timer.textContent = "25:00"};
@@ -15,36 +15,56 @@ function padded(a) {
 	return a;
 }
 
+let time = 1500;
+let clockType = [];
+
+let seconds = time % 60;
+let minutes = Math.floor((time / 60) % 60);
+
 function updateTime() {
-	this.time--;
-	var seconds = this.time % 60;
-	var minutes = Math.floor((this.time / 60) % 60);
+	if (!clockType.includes(minutes)) clockType.push(minutes);
+
+	seconds = time % 60;
+	minutes = Math.floor((time / 60) % 60);
 	timer.textContent = `${padded(minutes)}:${padded(seconds)}`;
-	if (this.time === 0) clearInterval(interval);
+
+	if (time == 0 && clockType.includes(1)) {
+		clockType.splice(0);
+		time = 301;
+	}
+
+	else if (time == 0 && !clockType.includes(1)) {
+		clockType.splice(0);
+		time = 1501;
+	}
+
+	time--;
 }
 
-let workClock = {
-	"time": 1500,
-	"updateTime": updateTime
-}
-
-let breakClock = {
-	"time": 300,
-	"updateTime": updateTime
-}
+var interval;
 
 function startTimer() {
-	var interval = setInterval(workClock.updateTime(), 1000);
+	updateTime();
+	interval = setInterval(updateTime, 1000);
+	start.removeEventListener("click", startTimer);
+	pause.addEventListener("click", pauseTimer);
 }
 
 function pauseTimer() {
 	clearInterval(interval);
+	pause.removeEventListener("click", pauseTimer);
+	start.addEventListener("click", startTimer);
 }
 
-function stopTimer() {
-
+function resetTimer() {
+	clearInterval(interval);
+	clockType.splice(0);
+	time = 60;
+	timer.textContent = "25:00";
+	start.addEventListener("click", startTimer);
+	pause.addEventListener("click", pauseTimer);
 }
 
 start.addEventListener("click", startTimer);
 pause.addEventListener("click", pauseTimer);
-stop.addEventListener("click", stopTimer);
+reset.addEventListener("click", resetTimer);
