@@ -62,7 +62,7 @@ function resetTimer() {
 	clearInterval(interval);
 	clockType.splice(0);
 	time = 1500;
-	timer.textContent = "00:10";
+	timer.textContent = "25:00";
 	start.addEventListener("click", startTimer);
 	pause.addEventListener("click", pauseTimer);
 }
